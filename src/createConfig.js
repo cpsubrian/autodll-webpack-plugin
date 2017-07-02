@@ -1,9 +1,10 @@
 import webpack from 'webpack';
 import path from 'path';
 import { cacheDir } from './paths';
+import merge from 'webpack-merge';
 
-const createConfig = ({ filename, entry }) => {
-  return {
+const createConfig = ({entry, filename, config = {}}) => {
+  return merge({
     resolve: {
       extensions: ['.js', '.jsx']
     },
@@ -19,7 +20,7 @@ const createConfig = ({ filename, entry }) => {
         name: '[name]_[hash]'
       })
     ]
-  };
+  }, config);
 };
 
 export default createConfig;
